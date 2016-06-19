@@ -29,7 +29,7 @@ namespace VarekartotekApplication
 			varesamling.Add( new Vare (1002, "A4 blok linieret med huller", 20, 3.88f) );
 			varesamling.Add( new Vare (1003, "Blyant Viking 400x2", 110, 0.64f) );
             varesamling.Add(new Vare(1004, "Lenovo bærbar", 2, 4999f));
-            varesamling.Add(new Vare(1005, "Blyantspidster", 57, 95f));
+            varesamling.Add(new Vare(1005, "Blyantspidser", 57, 95f));
         }
 
 		// metode der udskriver en oversigt over alle varer i samlingen
@@ -50,7 +50,7 @@ namespace VarekartotekApplication
 			Console.WriteLine("Betegnelse: " + vare.Betegnelse);
 			Console.WriteLine("Antal enheder på lager: " + vare.AntalPåLager);
             Console.WriteLine("Salgspris pr. enhed: " + vare.SalgsEnhedsPris + " kr.");
-			Console.WriteLine("Salgsværdi: " + vare.Salgsværdi() );//NB: metodekald
+			Console.WriteLine("Salgsværdi: " + vare.Salgsværdi() + " kr.");//NB: metodekald
 		}
 	}
 
@@ -75,7 +75,7 @@ namespace VarekartotekApplication
 		// metode for beregning af den salgsværdien det samlede antal
 		public double Salgsværdi ()
 		{
-			double salgsværdi = this.AntalPåLager * 3;
+			double salgsværdi = this.SalgsEnhedsPris * AntalPåLager;
 			return salgsværdi;
 		}
 	}
