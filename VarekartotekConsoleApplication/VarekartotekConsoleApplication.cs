@@ -28,7 +28,9 @@ namespace VarekartotekApplication
 			varesamling.Add( new Vare (1001, "A4 blok ternet med huller", 10, 3.98f) );
 			varesamling.Add( new Vare (1002, "A4 blok linieret med huller", 20, 3.88f) );
 			varesamling.Add( new Vare (1003, "Blyant Viking 400x2", 110, 0.64f) );
-		}
+            varesamling.Add(new Vare(1004, "Lenovo bærbar", 2, 4999f));
+            varesamling.Add(new Vare(1005, "Blyantspidster", 57, 95f));
+        }
 
 		// metode der udskriver en oversigt over alle varer i samlingen
 		public void UdskrivAlleVarer ()
