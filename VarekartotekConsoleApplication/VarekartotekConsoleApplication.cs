@@ -49,6 +49,7 @@ namespace VarekartotekApplication
 			Console.WriteLine("Varenr: " + vare.Varenr);
 			Console.WriteLine("Betegnelse: " + vare.Betegnelse);
 			Console.WriteLine("Antal enheder på lager: " + vare.AntalPåLager);
+            Console.WriteLine("Salgspris pr. enhed: " + vare.SalgsEnhedsPris + " kr.");
 			Console.WriteLine("Salgsværdi: " + vare.Salgsværdi() );//NB: metodekald
 		}
 	}
