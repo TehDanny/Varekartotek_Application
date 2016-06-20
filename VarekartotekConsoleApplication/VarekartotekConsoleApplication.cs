@@ -20,8 +20,8 @@ namespace VarekartotekApplication
             {
                 Console.Clear();
                 UdskrivHovedmenu();
-                int hovedmenuValg = HovedmenuValg();
-                switch(hovedmenuValg)
+                int menuValg = MenuValg();
+                switch(menuValg)
                 {
                     case 0:
                         keepRunning = false;
@@ -32,7 +32,7 @@ namespace VarekartotekApplication
                         break;
 
                     case 2:
-                        FindEnVareMedVarenr();
+                        FindEnVare();
                         break;
 
                     case -1:
@@ -51,20 +51,42 @@ namespace VarekartotekApplication
             } while (keepRunning);
         }
 
-        private void FindEnVareMedVarenr()
-        {
-            throw new NotImplementedException();
-        }
-
         private void UdskrivHovedmenu()
         {
             Console.WriteLine("Hovedmenu");
             Console.WriteLine("0. Afslut program");
             Console.WriteLine("1. Udskriv alle varer");
-            Console.WriteLine("2. Find en vare med varenr");
+            Console.WriteLine("2. Find en vare");
         }
 
-        private int HovedmenuValg()
+        private void FindEnVare()
+        {
+            bool keepRunning = true;
+            do
+            {
+                Console.Clear();
+                UdskrivFindEnVareMenu();
+                int menuValg = MenuValg();
+
+                if (menuValg == 0)
+                    keepRunning = false;
+
+                if (menuValg == -1)
+                {
+                    Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey();
+                }
+
+            } while (keepRunning);
+        }
+
+        private void UdskrivFindEnVareMenu()
+        {
+            Console.WriteLine("0. Tilbage");
+            Console.Write("Indtast venligst et varenr[xxxx]:  ");
+        }
+
+        private int MenuValg()
         {
             int valg = -1;
             try
