@@ -93,6 +93,8 @@
     <Compile Include="AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Vare.cs" />
     <Compile Include="VarekartotekConsoleApplication.cs">
       <SubType>Code</SubType>
     </Compile>
