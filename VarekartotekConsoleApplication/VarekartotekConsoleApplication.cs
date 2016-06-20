@@ -14,9 +14,69 @@ namespace VarekartotekApplication
         {
             this.varesamling = new List<Vare>();     // opret tom varesamling
             this.OpretTestVarer();                   // fyld data i 
-            this.UdskrivAlleVarer();                 // udskriv
 
-            Console.ReadLine();                     // Pause - vent på return !!
+            bool keepRunning = true;
+            do
+            {
+                Console.Clear();
+                UdskrivHovedmenu();
+                int hovedmenuValg = HovedmenuValg();
+                switch(hovedmenuValg)
+                {
+                    case 0:
+                        keepRunning = false;
+                        break;
+
+                    case 1:
+                        this.UdskrivAlleVarer();    // udskriv
+                        break;
+
+                    case 2:
+                        FindEnVareMedVarenr();
+                        break;
+
+                    case -1:
+                        Console.WriteLine("Indtast venligst et tal");
+                        break;
+                    
+                    default:
+                        Console.WriteLine("Indtast venligst et gyldigt tal");
+                        break;
+                }
+                if (keepRunning)
+                {
+                    Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey();
+                }
+            } while (keepRunning);
+        }
+
+        private void FindEnVareMedVarenr()
+        {
+            throw new NotImplementedException();
+        }
+
+        private void UdskrivHovedmenu()
+        {
+            Console.WriteLine("Hovedmenu");
+            Console.WriteLine("0. Afslut program");
+            Console.WriteLine("1. Udskriv alle varer");
+            Console.WriteLine("2. Find en vare med varenr");
+        }
+
+        private int HovedmenuValg()
+        {
+            int valg = -1;
+            try
+            {
+                valg = Int32.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                valg = -1;
+                return valg;
+            }
+            return valg;
         }
 
         // metode der opretter test varer
