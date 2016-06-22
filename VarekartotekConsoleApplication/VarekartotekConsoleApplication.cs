@@ -34,7 +34,11 @@ namespace VarekartotekApplication
                         break;
 
                     case 2:
-                        FindEnVare();
+                        VareHandling("FindEnVare");
+                        break;
+
+                    case 3:
+                        VareHandling("RegistrerSalgAfEnVare");
                         break;
 
                     case -1:
@@ -58,15 +62,16 @@ namespace VarekartotekApplication
             Console.WriteLine("0. Afslut program");
             Console.WriteLine("1. Udskriv alle varer");
             Console.WriteLine("2. Find en vare");
+            Console.WriteLine("3. Registrer salg af en vare");
         }
 
-        private void FindEnVare()
+        private void VareHandling(string handling)
         {
             bool keepRunning = true;
             do
             {
                 Console.Clear();
-                UdskrivFindEnVareMenu();
+                VarenrMenu();
                 int menuValg = MenuValg();
 
                 if (menuValg == 0)
@@ -79,27 +84,71 @@ namespace VarekartotekApplication
                 }
                 else
                 {
-                    Vare fundetVare = Vare.FindEnVareMedVarenr(menuValg, varesamling);
-                    if (fundetVare == null)
+                    Vare valgtVare = Vare.FindEnVareMedVarenr(menuValg, varesamling);
+                    if (valgtVare == null)
                     {
                         Console.WriteLine("Der eksisterer ikke nogen vare med det indtastede varenr.");
                         Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
                         Console.ReadKey();
                     }
-                    else
+                    else if (handling == "FindEnVare")
                     {
-                        UdskrivEnVare(fundetVare);
+                        UdskrivEnVare(valgtVare);
                         Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
                         Console.ReadKey();
+                        keepRunning = false;
+                    }
+                    else if (handling == "RegistrerSalgAfEnVare")
+                    {
+                        if (RegistrerSalg(valgtVare))
+                        {
+                            keepRunning = false;
+                        }
                     }
                 }
             } while (keepRunning);
         }
 
-        private void UdskrivFindEnVareMenu()
+        private void VarenrMenu()
         {
             Console.WriteLine("0. Tilbage");
-            Console.Write("Indtast venligst et varenr[xxxx]:  ");
+            Console.Write("Indtast venligst et varenr[xxxx]: ");
+        }
+
+        private bool RegistrerSalg(Vare vare)
+        {
+            bool keepRunning = true;
+            bool RegistreringGennemført = false;
+            do
+            {
+                Console.Clear();
+                VareAntalMenu();
+                int menuValg = MenuValg();
+                if (menuValg == 0)
+                    keepRunning = false;
+                else if (menuValg == -1)
+                {
+                    Console.WriteLine("Indtast venligst et tal");
+                    Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey();
+                }
+                else
+                {
+                    vare.RegistrerVarerSolgt(menuValg);
+                    UdskrivRegistreringAfVarer(menuValg, vare);
+                    Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                    Console.ReadKey();
+                    keepRunning = false;
+                    RegistreringGennemført = true;
+                }
+            } while (keepRunning);
+            return RegistreringGennemført;
+        }
+
+        private void VareAntalMenu()
+        {
+            Console.WriteLine("0. Tilbage");
+            Console.Write("Indtast venligst et antal af den valgte vare: ");
         }
 
         private int MenuValg()
@@ -172,6 +221,12 @@ namespace VarekartotekApplication
         private void UdskrivTotalIndkøbsværdi(double totalIndkøbsværdi)
         {
             Console.WriteLine("Total indkøbsværdi: " + totalIndkøbsværdi.ToString("c2"));
+        }
+
+        // metode der udskriver registrering af solgte varer
+        private void UdskrivRegistreringAfVarer(int antal, Vare vare)
+        {
+            Console.WriteLine("Der er blevet registreret af der er blevet solgt {0} stk. af varen med varenr {1}", antal, vare.Varenr);
         }
     }
 }

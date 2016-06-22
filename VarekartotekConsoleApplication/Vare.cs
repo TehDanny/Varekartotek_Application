@@ -52,5 +52,12 @@ namespace VarekartotekApplication
             }
             return fundetVare;
         }
+
+        // metode for beregning af antal varer efter et salg
+        public void RegistrerVarerSolgt(int antal)
+        {
+            this.AntalPåLager -= antal;
+            this.SolgtAntal += antal;
+        }
     }
 }
