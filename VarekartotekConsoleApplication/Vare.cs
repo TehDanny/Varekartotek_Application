@@ -14,11 +14,12 @@ namespace VarekartotekApplication
         public int AntalPåLager;
         public int SolgtAntal;
         public int IndkøbtAntal;
+        public int MinimumsAntal;
         public float SalgsEnhedsPris;			// aktuel excl. moms
         public float IndkøbEnhedsPris;
 
         // constructor til brug for skabelse af nyt vare-object
-        public Vare(int varenr, string betegnelse, string enhed, int antalPåLager, int solgtAntal, int indkøbtAntal, float salgsEnhedsPris, float indkøbsEnhedsPris)
+        public Vare(int varenr, string betegnelse, string enhed, int antalPåLager, int solgtAntal, int indkøbtAntal, int minimumsAntal, float salgsEnhedsPris, float indkøbsEnhedsPris)
         {
             this.Varenr = varenr;
             this.Betegnelse = betegnelse;
@@ -26,6 +27,7 @@ namespace VarekartotekApplication
             this.AntalPåLager = antalPåLager;
             this.SolgtAntal = solgtAntal;
             this.IndkøbtAntal = indkøbtAntal;
+            this.MinimumsAntal = minimumsAntal;
             this.SalgsEnhedsPris = salgsEnhedsPris;
             this.IndkøbEnhedsPris = indkøbsEnhedsPris;
         }
