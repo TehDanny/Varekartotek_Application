@@ -29,6 +29,8 @@ namespace VarekartotekApplication
 
                     case 1:
                         this.UdskrivAlleVarer();    // udskriv
+                        Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
                         break;
 
                     case 2:
@@ -37,16 +39,15 @@ namespace VarekartotekApplication
 
                     case -1:
                         Console.WriteLine("Indtast venligst et tal");
+                        Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
                         break;
                     
                     default:
                         Console.WriteLine("Indtast venligst et gyldigt tal");
+                        Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
                         break;
-                }
-                if (keepRunning)
-                {
-                    Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
-                    Console.ReadKey();
                 }
             } while (keepRunning);
         }
@@ -70,13 +71,28 @@ namespace VarekartotekApplication
 
                 if (menuValg == 0)
                     keepRunning = false;
-
-                if (menuValg == -1)
+                else if (menuValg == -1)
                 {
+                    Console.WriteLine("Indtast venligst et tal");
                     Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
                     Console.ReadKey();
                 }
-
+                else
+                {
+                    Vare fundetVare = Vare.FindEnVareMedVarenr(menuValg, varesamling);
+                    if (fundetVare == null)
+                    {
+                        Console.WriteLine("Der eksisterer ikke nogen vare med det indtastede varenr.");
+                        Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
+                    }
+                    else
+                    {
+                        UdskrivEnVare(fundetVare);
+                        Console.WriteLine("\nTryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
+                    }
+                }
             } while (keepRunning);
         }
 

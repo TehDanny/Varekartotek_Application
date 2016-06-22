@@ -39,5 +39,16 @@ namespace VarekartotekApplication
             double indkøbsværdi = this.IndkøbEnhedsPris * this.AntalPåLager;
             return indkøbsværdi;
         }
+
+        internal static Vare FindEnVareMedVarenr(int menuValg, List<Vare> varesamling)
+        {
+            Vare fundetVare = null;
+            foreach (Vare vare in varesamling)
+            {
+                if (vare.Varenr == menuValg)
+                    fundetVare = vare;
+            }
+            return fundetVare;
+        }
     }
 }
