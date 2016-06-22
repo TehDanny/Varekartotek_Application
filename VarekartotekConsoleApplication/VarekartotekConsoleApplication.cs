@@ -41,6 +41,10 @@ namespace VarekartotekApplication
                         VareHandling("RegistrerSalgAfEnVare");
                         break;
 
+                    case 4:
+                        VareHandling("RegistrerIndkøbAfEnVare");
+                        break;
+
                     case -1:
                         Console.WriteLine("Indtast venligst et tal");
                         Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
@@ -63,6 +67,7 @@ namespace VarekartotekApplication
             Console.WriteLine("1. Udskriv alle varer");
             Console.WriteLine("2. Find en vare");
             Console.WriteLine("3. Registrer salg af en vare");
+            Console.WriteLine("4. Registrer indkøb af en vare");
         }
 
         private void VareHandling(string handling)
@@ -98,9 +103,9 @@ namespace VarekartotekApplication
                         Console.ReadKey();
                         keepRunning = false;
                     }
-                    else if (handling == "RegistrerSalgAfEnVare")
+                    else if (handling == "RegistrerSalgAfEnVare" || handling == "RegistrerIndkøbAfEnVare")
                     {
-                        if (RegistrerSalg(valgtVare))
+                        if (RegistrerHandling(valgtVare, handling))
                         {
                             keepRunning = false;
                         }
@@ -115,7 +120,7 @@ namespace VarekartotekApplication
             Console.Write("Indtast venligst et varenr[xxxx]: ");
         }
 
-        private bool RegistrerSalg(Vare vare)
+        private bool RegistrerHandling(Vare vare, string handling)
         {
             bool keepRunning = true;
             bool RegistreringGennemført = false;
@@ -134,8 +139,16 @@ namespace VarekartotekApplication
                 }
                 else
                 {
-                    vare.RegistrerVarerSolgt(menuValg);
-                    UdskrivRegistreringAfVarer(menuValg, vare);
+                    if (handling == "RegistrerSalgAfEnVare")
+                    {
+                        vare.RegistrerVarerSolgt(menuValg);
+                        UdskrivRegistreringAfSalg(menuValg, vare);
+                    }
+                    else if (handling == "RegistrerIndkøbAfEnVare")
+                    {
+                        vare.RegistrerVarerIndkøbt(menuValg);
+                        UdskrivRegistreringAfIndkøb(menuValg, vare);
+                    }
                     Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
                     Console.ReadKey();
                     keepRunning = false;
@@ -169,11 +182,11 @@ namespace VarekartotekApplication
         // metode der opretter test varer
         private void OpretTestVarer()
         {
-            varesamling.Add(new Vare(1001, "A4 blok ternet med huller", "Blok", 10, 3, 3.98f, 2.56f));
-            varesamling.Add(new Vare(1002, "A4 blok linieret med huller", "Blok", 20, 11, 3.88f, 2.73f));
-            varesamling.Add(new Vare(1003, "Blyant Viking 400x2", "Æske", 110, 36, 0.64f, 0.45f));
-            varesamling.Add(new Vare(1004, "Lenovo bærbar", "Styk", 2, 5, 4999f, 1500f));
-            varesamling.Add(new Vare(1005, "Blyantspidser", "Styk", 57, 2, 9.5f, 0.53f));
+            varesamling.Add(new Vare(1001, "A4 blok ternet med huller", "Blok", 10, 3, 10 + 3, 3.98f, 2.56f));
+            varesamling.Add(new Vare(1002, "A4 blok linieret med huller", "Blok", 20, 11, 20+11, 3.88f, 2.73f));
+            varesamling.Add(new Vare(1003, "Blyant Viking 400x2", "Æske", 110, 36, 110+36, 0.64f, 0.45f));
+            varesamling.Add(new Vare(1004, "Lenovo bærbar", "Styk", 2, 5, 2+5, 4999f, 1500f));
+            varesamling.Add(new Vare(1005, "Blyantspidser", "Styk", 57, 2, 57+2, 9.5f, 0.53f));
         }
 
         // metode der udskriver en oversigt over alle varer i samlingen
@@ -205,6 +218,7 @@ namespace VarekartotekApplication
             Console.WriteLine("Enhed: " + vare.Enhed);
             Console.WriteLine("Antal enheder på lager: " + vare.AntalPåLager);
             Console.WriteLine("Antal solgte enheder: " + vare.SolgtAntal);
+            Console.WriteLine("Antal indkøbte enheder: " + vare.IndkøbtAntal);
             Console.WriteLine("Salgspris pr. enhed: " + vare.SalgsEnhedsPris.ToString("c2"));
             Console.WriteLine("Salgsværdi: " + vare.Salgsværdi().ToString("c2"));//NB: metodekald
             Console.WriteLine("Indkøbspris pr. enhed: " + vare.IndkøbEnhedsPris.ToString("c2"));
@@ -224,9 +238,14 @@ namespace VarekartotekApplication
         }
 
         // metode der udskriver registrering af solgte varer
-        private void UdskrivRegistreringAfVarer(int antal, Vare vare)
+        private void UdskrivRegistreringAfSalg(int antal, Vare vare)
         {
             Console.WriteLine("Der er blevet registreret af der er blevet solgt {0} stk. af varen med varenr {1}", antal, vare.Varenr);
+        }
+
+        private void UdskrivRegistreringAfIndkøb(int antal, Vare vare)
+        {
+            Console.WriteLine("Der er blevet registreret af der er blevet indkøbt {0} stk. af varen med varenr {1}", antal, vare.Varenr);
         }
     }
 }
