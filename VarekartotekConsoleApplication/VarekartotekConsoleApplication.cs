@@ -45,6 +45,12 @@ namespace VarekartotekApplication
                         VareHandling("RegistrerIndkøbAfEnVare");
                         break;
 
+                    case 5:
+                        UdskrivUnderMinimum();
+                        Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
+                        Console.ReadKey();
+                        break;
+
                     case -1:
                         Console.WriteLine("Indtast venligst et tal");
                         Console.WriteLine("Tryk på en vilkårlig tast for at fortsætte...");
@@ -68,6 +74,7 @@ namespace VarekartotekApplication
             Console.WriteLine("2. Find en vare");
             Console.WriteLine("3. Registrer salg af en vare");
             Console.WriteLine("4. Registrer indkøb af en vare");
+            Console.WriteLine("5. Udskriv varer der mangler at blive indkøbt");
         }
 
         private void VareHandling(string handling)
@@ -247,6 +254,18 @@ namespace VarekartotekApplication
         private void UdskrivRegistreringAfIndkøb(int antal, Vare vare)
         {
             Console.WriteLine("Der er blevet registreret af der er blevet indkøbt {0} stk. af varen med varenr {1}", antal, vare.Varenr);
+        }
+
+        // metode der udskriver varer der er under mininums antal
+        private void UdskrivUnderMinimum()
+        {
+            Console.Clear();
+            Console.WriteLine("Varer der er under mininums antal:");
+            foreach (Vare vare in varesamling)
+            {
+                if(vare.AntalPåLager < vare.MinimumsAntal)
+                    this.UdskrivEnVare(vare);
+            }
         }
     }
 }
