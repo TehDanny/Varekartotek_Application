@@ -21,7 +21,7 @@ namespace VarekartotekApplication
                 Console.Clear();
                 UdskrivHovedmenu();
                 int menuValg = MenuValg();
-                switch(menuValg)
+                switch (menuValg)
                 {
                     case 0:
                         keepRunning = false;

@@ -8,28 +8,75 @@ namespace VarekartotekApplication
     class Vare
     {
         // vare-objektes memory (datafelter)
-        public int Varenr;
-        public string Betegnelse;
-        public string Enhed;
-        public int AntalPåLager;
-        public int SolgtAntal;
-        public int IndkøbtAntal;
-        public int MinimumsAntal;
-        public float SalgsEnhedsPris;			// aktuel excl. moms
-        public float IndkøbEnhedsPris;
+        private int varenr;
+        public int Varenr
+        {
+            get { return varenr; }
+        }
+
+        private string betegnelse;
+        public string Betegnelse
+        {
+            get { return betegnelse; }
+        }
+
+        private string enhed;
+        public string Enhed
+        {
+            get { return enhed; }
+        }
+
+        private int antalPåLager;
+        public int AntalPåLager
+        {
+            get { return antalPåLager; }
+            set { antalPåLager = value; }
+        }
+
+        private int solgtAntal;
+        public int SolgtAntal
+        {
+            get { return solgtAntal; }
+            set { solgtAntal = value; }
+        }
+
+        private int indkøbtAntal;
+        public int IndkøbtAntal
+        {
+            get { return indkøbtAntal; }
+            set { indkøbtAntal = value; }
+        }
+
+        private int minimumsAntal;
+        public int MinimumsAntal
+        {
+            get { return minimumsAntal; }
+        }
+
+        private float salgsEnhedsPris;  // aktuel excl. moms
+        public float SalgsEnhedsPris
+        {
+            get { return salgsEnhedsPris; }
+        }
+
+        private float indkøbEnhedsPris;
+        public float IndkøbEnhedsPris
+        {
+            get { return indkøbEnhedsPris; }
+        }
 
         // constructor til brug for skabelse af nyt vare-object
         public Vare(int varenr, string betegnelse, string enhed, int antalPåLager, int solgtAntal, int indkøbtAntal, int minimumsAntal, float salgsEnhedsPris, float indkøbsEnhedsPris)
         {
-            this.Varenr = varenr;
-            this.Betegnelse = betegnelse;
-            this.Enhed = enhed;
-            this.AntalPåLager = antalPåLager;
-            this.SolgtAntal = solgtAntal;
-            this.IndkøbtAntal = indkøbtAntal;
-            this.MinimumsAntal = minimumsAntal;
-            this.SalgsEnhedsPris = salgsEnhedsPris;
-            this.IndkøbEnhedsPris = indkøbsEnhedsPris;
+            this.varenr = varenr;
+            this.betegnelse = betegnelse;
+            this.enhed = enhed;
+            this.antalPåLager = antalPåLager;
+            this.solgtAntal = solgtAntal;
+            this.indkøbtAntal = indkøbtAntal;
+            this.minimumsAntal = minimumsAntal;
+            this.salgsEnhedsPris = salgsEnhedsPris;
+            this.indkøbEnhedsPris = indkøbsEnhedsPris;
         }
 
         // metode for beregning af salgsværdien for det samlede antal
