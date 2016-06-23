@@ -186,7 +186,7 @@ namespace VarekartotekApplication
             varesamling.Add(new Vare(1002, "A4 blok linieret med huller", "Blok", 20, 11, 20+11, 20, 3.88f, 2.73f));
             varesamling.Add(new Vare(1003, "Blyant Viking 400x2", "Æske", 110, 36, 110+36, 100, 0.64f, 0.45f));
             varesamling.Add(new Vare(1004, "Lenovo bærbar", "Styk", 2, 5, 2+5, 3, 4999f, 1500f));
-            varesamling.Add(new Vare(1005, "Blyantspidser", "Styk", 57, 2, 50, 57+2, 9.5f, 0.53f));
+            varesamling.Add(new Vare(1005, "Blyantspidser", "Styk", 57, 2, 57+2, 50, 9.5f, 0.53f));
         }
 
         // metode der udskriver en oversigt over alle varer i samlingen
